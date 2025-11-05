@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-unsigned int	number_len(int n)
+static unsigned int	number_len(int n)
 {
 	unsigned int	len;
 

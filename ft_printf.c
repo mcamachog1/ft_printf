@@ -6,7 +6,7 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:17:26 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/05 12:33:27 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:12:34 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,19 @@ int	count_specifiers(const char *format)
 	int			i;
 	int			count;
 
-	specifiers = malloc(ft_strlen("cspdiuxX%") + 1);
-	if (!specifiers)
-		return (NULL);
-	ft_strlcpy(specifiers, "cspdiuxX%", ft_strlen("cspdiuxX%") + 1);
+	specifiers = "cspdiuxX";
 	i = 0;
 	count = 0;
 	while (format[i])
 	{
-		if (format[i] != '%')
-			i++;
-		else
+		if (format[i] == '%')
 		{
-			if (format[i + 1] && ft_strchr(specifiers, format[i + 1]) != NULL)
-				count++;
 			i++;
+			if (format[i] && ft_strchr(specifiers, format[i]))
+				count++;
 		}
+		i++;
 	}
-	free((void *)specifiers);
 	return (count);
 }
 
@@ -48,36 +43,37 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		i;
+	int		spec_count;
 
 	if (format == NULL)
 		return (-1);
-	printf("Total de especificadores = %d\n", count_specifiers(format));
+	spec_count = count_specifiers(format);
+	printf("Number of specifiers:%d\n", spec_count);
 	i = 0;
+	va_start(args, format);
 	while (format[i])
 	{
 		if (format[i] == '%' && format[i + 1])
 		{
-			if (format[i + 1] == '%')
+			i++;
+			if (format[i] == '%')
 				write(1, "%", 1);
 			else
-				write(1, "ESPECIFICADOR", 13);
-			i += 2;
-			continue ;
+			{
+				if (format[i] == 'd')
+					ft_putstr_fd(ft_itoa(va_arg(args, int)), 1);
+				if (format[i] == 's')
+					ft_putstr_fd(va_arg(args, char *), 1);
+				if (format[i] == 'c')
+					ft_putchar_fd(va_arg(args, int), 1);
+			}
 		}
 		else
 			write(1, &format[i], 1);
 		i++;
+		
 	}
-	// va_start(args, format);
-	/*
-	while (i < format_len)
-	{
-			printf("%d\n", va_arg(args, int));
-		i++;
-	}
-
 	va_end(args);
-	*/
 	return (0);
 }
 
@@ -85,6 +81,7 @@ int	main(void)
 {
 	int	result;
 
-	result = ft_printf("n1:%d y str1:%s porcentaje %% adicional\n", 10, "20");
+	result = ft_printf("ft_printf\nn1:%s n2:%d n3:%% n4:%c\n", "310", 20, 'R');
+	printf("printf\nn1:%s n2:%d n3:%% n4:%c\n", "310", 20, 'R');
 	return (result);
 }
