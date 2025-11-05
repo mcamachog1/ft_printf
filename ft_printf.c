@@ -1,9 +1,26 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include "../Libft/libft.h"
+#include "./Libft/libft.h"
 
 int	ft_printf(const char *, ...);
 int	count_specifiers(const char *);
+void	print_format(const char *format);
+
+void	print_format(const char *format)
+{
+	char	**matrix;
+	int	i;
+
+	i = 0;
+	matrix = ft_split(format, '%');
+	if (!matrix)
+		return ;
+	while (matrix[i])
+	{
+		printf("i=%d - str=%s\n", i, matrix[i]);
+		i++;
+	}
+}
 
 int	count_specifiers(const char *format)
 {
@@ -36,21 +53,24 @@ int	ft_printf(const char *format, ...)
 	format_len = count_specifiers(format);
 	if (format == NULL)
 		return (-1);
-	va_start(args, format);
-	printf("Total de especificadores = %d\n", format_len);
+	print_format(format);	
+	//va_start(args, format);
+	//printf("Total de especificadores = %d\n", format_len);
+	/*
 	while (i < format_len)
 	{
-        	printf("%s\n", va_arg(args, char *));
+        	printf("%d\n", va_arg(args, int));
 		i++;
 	}
 
 	va_end(args);
+	*/
 	return (0);
 }
 
 int main()
 {
 
-    int result = ft_printf("n=%d y str=%s\n", "Hola" , "Mundo");
+    int result = ft_printf("n=%d y str=%d\n", 10 , 20);
     return 0;
 }
