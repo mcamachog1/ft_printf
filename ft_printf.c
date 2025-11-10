@@ -6,7 +6,7 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:17:26 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/05 17:39:55 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:21:29 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,20 @@ int	ft_printf(const char *format, ...)
 			{
 				ft_putstr_fd("0x", 1);
 				base = "0123456789abcdef";
-				result += ft_putnbr_base_fd((unsigned long)va_arg(args, void *), base ,1);
+				ft_putnbr_base_fd((unsigned long)va_arg(args, void *), base ,1);
 			}
 			if (format[i] == 'u')
 				ft_putnbr_fd((unsigned int)va_arg(args, unsigned int), 1);
+			if (format[i] == 'x')
+			{
+				base = "0123456789abcdef";
+				ft_putnbr_base_fd((unsigned int)va_arg(args, unsigned int), base, 1);
+			}
+			if (format[i] == 'X')
+			{
+				base = "0123456789ABCDEF";
+				ft_putnbr_base_fd((unsigned int)va_arg(args, unsigned int), base, 1);
+			}
 			
 		}
 		else
@@ -87,13 +97,13 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	int	result;
 	int	n;
 	int *pointer;
 
 	n = 42;
 	pointer = &n;
-	result = ft_printf("ft_printf\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u\n", "310", 20, 'R', pointer, 2147483647);
-	printf("printf\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u\n", "310", 20, 'R', pointer, 2147483647);
-	return (result);
+	printf("hola\n");
+	ft_printf("ft_printf\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", NULL, 20, 'R', ((void *)0) , 2147483647, 500, 3500);
+	printf("printf\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", NULL, 20, 'R', ((void *)0), 2147483647, 500, 3500);
+	return (0);
 }
