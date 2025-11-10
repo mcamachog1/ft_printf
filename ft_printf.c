@@ -6,50 +6,28 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:17:26 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/10 11:33:50 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:59:17 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
-#include "./Libft/libft.h"
+//#include "./Libft/libft.h"
+#include "helpers.h"
 
 int	ft_printf(const char *format, ...);
-int	ft_putnbr_base_fd(unsigned long n, char *base, int fd);
-static int	count_specifiers(const char *format);
-
-static int	count_specifiers(const char *format)
-{
-	const char	*specifiers;
-	int			i;
-	int			count;
-
-	specifiers = "cspdiuxX";
-	i = 0;
-	count = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] && ft_strchr(specifiers, format[i]))
-				count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int				i;
 	int				result;
+	int				count;
 	char			*base;
 	char			*str;
 	unsigned long	ul;
 
 	result = 0;
+	count = 0;
 	if (format == NULL)
 		return (-1);
 	i = 0;
@@ -60,59 +38,52 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '%')
-				ft_putchar_fd('%', 1);
+				ft_putchar_fd_helper('%', 1, &count);
 			if (format[i] == 'd')
-			{
-				base = "0123456789";
-				ft_putnbr_base_fd(va_arg(args, int), base, 1);
-			}
+				ft_putnbr_fd_helper(va_arg(args, int), 1, &count);
 			if (format[i] == 'i')
-				base = "0123456789";
-			{
-				base = "0123456789";
-				ft_putnbr_base_fd(va_arg(args, int), base, 1);
-			}
+				ft_putnbr_fd_helper(va_arg(args, int), 1, &count);
 			if (format[i] == 's')
 			{
 				str = va_arg(args, char *);
 				if (str == NULL)
-					ft_putstr_fd("(null)", 1);
+					ft_putstr_fd_helper("(null)", 1, &count);
 				else
-					ft_putstr_fd(str, 1);
+					ft_putstr_fd_helper(str, 1, &count);
 			}
 			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
+				ft_putchar_fd_helper(va_arg(args, int), 1, &count);
 			if (format[i] == 'p')
 			{
 				ul = (unsigned long)va_arg(args, void *);
 				if (ul == 0)
-					ft_putstr_fd("(nil)", 1);
+					ft_putstr_fd_helper("(nil)", 1, &count);
 				else
 				{
-					ft_putstr_fd("0x", 1);
+					ft_putstr_fd_helper("0x", 1, &count);
 					base = "0123456789abcdef";
-					ft_putnbr_base_fd(ul, base ,1);
+					ft_putnbr_base_fd_helper(ul, base ,1, &count);
 				}
 			}
 			if (format[i] == 'u')
 			{
 				base = "0123456789";
-				ft_putnbr_base_fd((unsigned int)va_arg(args, unsigned int), base, 1);
+				ft_putnbr_base_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
 			}
 			if (format[i] == 'x')
 			{
 				base = "0123456789abcdef";
-				ft_putnbr_base_fd((unsigned int)va_arg(args, unsigned int), base, 1);
+				ft_putnbr_base_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
 			}
-			if (format[i] == 'X')t
+			if (format[i] == 'X')
 			{
 				base = "0123456789ABCDEF";
-				ft_putnbr_base_fd((unsigned int)va_arg(args, unsigned int), base, 1);
+				ft_putnbr_base_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
 			}
 			
 		}
 		else
-			ft_putchar_fd(format[i], 1);
+			ft_putchar_fd_helper(format[i], 1, &count);
 		i++;
 	}
 	va_end(args);
