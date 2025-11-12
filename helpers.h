@@ -6,7 +6,7 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:27:43 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/12 11:26:29 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:33:16 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 //# include <unistd.h>
 
-void	ft_putchar_fd_helper(char c, int fd, int *count);
-void	ft_putstr_fd_helper(char *s, int fd, int *count);
-void	ft_putnbr_fd_helper(int n, int fd, int *count);
-void	ft_putnbr_base_fd_helper(unsigned long n, char *b, int fd, int *count);
-int		ft_count_specifiers(const char *format);
+void	ft_putchar(char c, int *count);
+void	ft_putstr(char *s, int *count);
+void	ft_putnbr(int n, int *count);
+void	ft_putnbr_base(unsigned long n, char *base, int *count);
+void	ft_helper_s(char *s, int *count);
+void	ft_helper_p(unsigned long ul, int *count);
+void	ft_helper_u(unsigned int n, int *count);
+void	ft_helper_x(unsigned int n, int lower, int *count);
 
 #endif

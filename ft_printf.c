@@ -6,78 +6,45 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:17:26 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/12 12:08:46 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:50:22 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
-//#include "./Libft/libft.h"
 #include "helpers.h"
 
 static void	router(char c, va_list *p_args, int *count)
 {
-
-			if (c == '%')
-				ft_putchar_fd_helper('%', 1, count);
-			if (c == 'd')
-				ft_putnbr_fd_helper(va_arg(*p_args, int), 1, count);
-/*			if (format[i] == 'i')
-				ft_putnbr_fd_helper(va_arg(args, int), 1, &count);
-			if (format[i] == 's')
-			{
-				str = va_arg(args, char *);
-				if (str == NULL)
-					ft_putstr_fd_helper("(null)", 1, &count);
-				else
-					ft_putstr_fd_helper(str, 1, &count);
-			}
-			if (format[i] == 'c')
-				ft_putchar_fd_helper((char)va_arg(args, int), 1, &count);
-			if (format[i] == 'p')
-			{
-				ul = (unsigned long)va_arg(args, void *);
-				if (ul == 0)
-					ft_putstr_fd_helper("(nil)", 1, &count);
-				else
-				{
-					ft_putstr_fd_helper("0x", 1, &count);
-					base = "0123456789abcdef";
-					ft_putnbr_base_fd_helper(ul, base ,1, &count);
-				}
-			}
-			if (format[i] == 'u')
-			{
-				base = "0123456789";
-				ft_putnbr_base_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
-			}
-			if (format[i] == 'x')
-			{
-				base = "0123456789abcdef";
-				ft_putnbr_base&_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
-			}
-			if (format[i] == 'X')
-			{
-				base = "0123456789ABCDEF";
-				ft_putnbr_base_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
-			}
-*/			
-}	
+	if (c == '%')
+		ft_putchar('%', count);
+	if (c == 'd')
+		ft_putnbr(va_arg(*p_args, int), count);
+	if (c == 'i')
+		ft_putnbr(va_arg(*p_args, int), count);
+	if (c == 's')
+		ft_helper_s(va_arg(*p_args, char *), count);
+	if (c == 'c')
+		ft_putchar((char)va_arg(*p_args, int), count);
+	if (c == 'p')
+		ft_helper_p((unsigned long)va_arg(*p_args, void *), count);
+	if (c == 'u')
+		ft_helper_u(va_arg(*p_args, unsigned int), count);
+	if (c == 'x')
+		ft_helper_x(va_arg(*p_args, unsigned int), 1, count);
+	if (c == 'X')
+		ft_helper_x(va_arg(*p_args, unsigned int), 0, count);
+}
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	args;
-	int				i;
-	int				result;
-	int				count;
-	//char			*base;
-	//char			*str;
-	//unsigned long	ul;
+	va_list		args;
+	int			i;
+	int			count;
 
-	result = 0;
-	count = 0;
-	if (format == NULL)
+	if (format == 0)
 		return (-1);
+	count = 0;
 	i = 0;
 	va_start(args, format);
 	while (format[i])
@@ -88,13 +55,13 @@ int	ft_printf(const char *format, ...)
 			router(format[i], &args, &count);
 		}
 		else
-			ft_putchar_fd_helper(format[i], 1, &count);
+			ft_putchar(format[i], &count);
 		i++;
 	}
 	va_end(args);
 	return (count);
 }
-
+/*
 int	main(void)
 {
 	int	n;
@@ -102,9 +69,27 @@ int	main(void)
 
 	n = 42;
 	pointer = &n;
-	printf("%d\n", ft_printf("%%%%"));
-	printf("%d\n", printf("%%%%"));
-	//printf("%d\n", ft_printf("\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", ((char *)0), 20, 'R', ((void *)0) , 2147483647, 3500, 3500));
-	//printf("%d\n", printf("\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", (char *)0, 20, 'R', ((void *)0), 2147483647, 3500, 3500));
+	printf("%d\n", ft_printf("%u", 21212121));
+	printf("%d\n", printf("%u", 21212121));
+	printf("%d\n", ft_printf("\nn1:%s n2:%d n3:%% n4:%c 
+n5:%p n6:%u n7:%x n8:%X\n", 
+(char *)0, 20, 'R', ((void *)0) , 2147483647, 3500, 3500));
+	printf("%d\n", printf("\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", 
+(char *)0, 20, 'R', ((void *)0), 2147483647, 3500, 3500));
+	return (0);
+}
+*/
+int	main(void)
+{
+	//printf("\n%d\n", ft_printf("numero=%d y % ra", 5, 3));
+	//printf("%d\n", printf("numero=%d y % ra", 5, 3));
+	//printf("\n%d\n", ft_printf("numero=%d y %%	ra", 5));
+	//printf("\n%d\n", printf("numero=%d y %%	ra", 5));
+	//printf("\n%d\n", ft_printf("numero=%d y %   sin especificador", 5, "lo toma"));
+	//printf("\n%d\n", printf("numero=%d y %   sin especificador", 5, "lo toma"));
+	//printf("numero=%d y %   s? especificador", 5, "lo toma");
+	//printf("numero=%d y %   js especificador", 5, "lo_toma");
+	//printf("numero=%d y %42 especificador", 5);
+	//printf("numero=%d y %%42 especificador", 5);
 	return (0);
 }

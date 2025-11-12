@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd_helper.c                              :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:45:25 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/10 15:01:32 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:29:40 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helpers.h"
 //#include <stdio.h>
 
-void	ft_putstr_fd_helper(char *s, int fd, int *count)
+void	ft_putstr(char *s, int *count)
 {
-	if (s == 0)
-		return ;
 	while (*s)
 	{
-		ft_putchar_fd_helper(*s, fd, count);
+		ft_putchar(*s, count);
 		s++;
 	}
 }
