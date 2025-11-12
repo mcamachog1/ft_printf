@@ -6,7 +6,7 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:03 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/10 15:18:03 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:59:59 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_putnbr_base_fd_helper(unsigned long n, char *base,
 int fd, int *count)
 {
-	char	number;
-	int		nbase;
+	char			number;
+	unsigned long	nbase;
 
 	nbase = 0;
 	while (base[nbase])

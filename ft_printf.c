@@ -6,7 +6,7 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:17:26 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/10 14:59:17 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:08:46 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,14 @@
 //#include "./Libft/libft.h"
 #include "helpers.h"
 
-int	ft_printf(const char *format, ...);
-int	ft_printf(const char *format, ...)
+static void	router(char c, va_list *p_args, int *count)
 {
-	va_list	args;
-	int				i;
-	int				result;
-	int				count;
-	char			*base;
-	char			*str;
-	unsigned long	ul;
 
-	result = 0;
-	count = 0;
-	if (format == NULL)
-		return (-1);
-	i = 0;
-	va_start(args, format);
-	while (format[i])
-	{
-		if (format[i] == '%' && format[i + 1])
-		{
-			i++;
-			if (format[i] == '%')
-				ft_putchar_fd_helper('%', 1, &count);
-			if (format[i] == 'd')
-				ft_putnbr_fd_helper(va_arg(args, int), 1, &count);
-			if (format[i] == 'i')
+			if (c == '%')
+				ft_putchar_fd_helper('%', 1, count);
+			if (c == 'd')
+				ft_putnbr_fd_helper(va_arg(*p_args, int), 1, count);
+/*			if (format[i] == 'i')
 				ft_putnbr_fd_helper(va_arg(args, int), 1, &count);
 			if (format[i] == 's')
 			{
@@ -52,7 +33,7 @@ int	ft_printf(const char *format, ...)
 					ft_putstr_fd_helper(str, 1, &count);
 			}
 			if (format[i] == 'c')
-				ft_putchar_fd_helper(va_arg(args, int), 1, &count);
+				ft_putchar_fd_helper((char)va_arg(args, int), 1, &count);
 			if (format[i] == 'p')
 			{
 				ul = (unsigned long)va_arg(args, void *);
@@ -73,21 +54,45 @@ int	ft_printf(const char *format, ...)
 			if (format[i] == 'x')
 			{
 				base = "0123456789abcdef";
-				ft_putnbr_base_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
+				ft_putnbr_base&_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
 			}
 			if (format[i] == 'X')
 			{
 				base = "0123456789ABCDEF";
 				ft_putnbr_base_fd_helper((unsigned int)va_arg(args, unsigned int), base, 1, &count);
 			}
-			
+*/			
+}	
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	args;
+	int				i;
+	int				result;
+	int				count;
+	//char			*base;
+	//char			*str;
+	//unsigned long	ul;
+
+	result = 0;
+	count = 0;
+	if (format == NULL)
+		return (-1);
+	i = 0;
+	va_start(args, format);
+	while (format[i])
+	{
+		if (format[i] == '%' && format[i + 1])
+		{
+			i++;
+			router(format[i], &args, &count);
 		}
 		else
 			ft_putchar_fd_helper(format[i], 1, &count);
 		i++;
 	}
 	va_end(args);
-	return (0);
+	return (count);
 }
 
 int	main(void)
@@ -97,7 +102,9 @@ int	main(void)
 
 	n = 42;
 	pointer = &n;
-	ft_printf("ft_printf\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", ((char *)0), 20, '\0', ((void *)0) , 2147483647, 3500, 3500);
-	printf("printf\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", (char *)0, 20, '\0', ((void *)0), 2147483647, 3500, 3500);
+	printf("%d\n", ft_printf("%%%%"));
+	printf("%d\n", printf("%%%%"));
+	//printf("%d\n", ft_printf("\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", ((char *)0), 20, 'R', ((void *)0) , 2147483647, 3500, 3500));
+	//printf("%d\n", printf("\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", (char *)0, 20, 'R', ((void *)0), 2147483647, 3500, 3500));
 	return (0);
 }
