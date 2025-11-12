@@ -6,11 +6,11 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:17:26 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/12 16:50:22 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:52:26 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include <stdarg.h>
 #include "helpers.h"
 
@@ -79,17 +79,3 @@ n5:%p n6:%u n7:%x n8:%X\n",
 	return (0);
 }
 */
-int	main(void)
-{
-	//printf("\n%d\n", ft_printf("numero=%d y % ra", 5, 3));
-	//printf("%d\n", printf("numero=%d y % ra", 5, 3));
-	//printf("\n%d\n", ft_printf("numero=%d y %%	ra", 5));
-	//printf("\n%d\n", printf("numero=%d y %%	ra", 5));
-	//printf("\n%d\n", ft_printf("numero=%d y %   sin especificador", 5, "lo toma"));
-	//printf("\n%d\n", printf("numero=%d y %   sin especificador", 5, "lo toma"));
-	//printf("numero=%d y %   s? especificador", 5, "lo toma");
-	//printf("numero=%d y %   js especificador", 5, "lo_toma");
-	//printf("numero=%d y %42 especificador", 5);
-	//printf("numero=%d y %%42 especificador", 5);
-	return (0);
-}

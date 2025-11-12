@@ -6,7 +6,7 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:27:43 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/12 16:33:16 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:05:58 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	ft_helper_s(char *s, int *count);
 void	ft_helper_p(unsigned long ul, int *count);
 void	ft_helper_u(unsigned int n, int *count);
 void	ft_helper_x(unsigned int n, int lower, int *count);
+int		ft_printf(const char *format, ...);
 
 #endif
