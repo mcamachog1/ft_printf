@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.h                                          :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 14:27:43 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/12 17:05:58 by macamach         ###   ########.fr       */
+/*   Created: 2025/11/12 17:19:41 by macamach          #+#    #+#             */
+/*   Updated: 2025/11/12 17:19:46 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HELPERS_H
-# define HELPERS_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 //# include <unistd.h>
 

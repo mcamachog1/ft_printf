@@ -1,5 +1,5 @@
 
-NAME = test
+NAME = libftprintf.a
 
 MY_SOURCES = ft_putchar.c      ft_putnbr.c \
 			ft_printf.c   ft_putnbr_base.c  ft_putstr.c \
@@ -12,7 +12,7 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(MY_OBJECTS)
-		cc $(CFLAGS) $(MY_OBJECTS) -o $(NAME)
+		ar rcs $(NAME) $(MY_OBJECTS)
 
 debug: $(MY_OBJECTS)
 		cc -g $(MY_SOURCES) -o $(NAME)
