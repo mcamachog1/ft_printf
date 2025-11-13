@@ -20,11 +20,6 @@ void	ft_putnbr_base(unsigned long n, char *base, int *count)
 	nbase = 0;
 	while (base[nbase])
 		nbase++;
-	if (n < 0)
-	{
-		ft_putchar('-', count);
-		n = -n;
-	}
 	if (n >= nbase)
 		ft_putnbr_base(n / nbase, base, count);
 	number = base[n % nbase];
