@@ -6,7 +6,7 @@
 /*   By: macamach <mcamach@student.42porto.com      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:17:26 by macamach          #+#    #+#             */
-/*   Updated: 2025/11/12 17:20:25 by macamach         ###   ########.fr       */
+/*   Updated: 2025/11/19 12:23:38 by macamach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,8 @@ int	main(void)
 
 	n = 42;
 	pointer = &n;
-	printf("%d\n", ft_printf("%u", 21212121));
-	printf("%d\n", printf("%u", 21212121));
-	printf("%d\n", ft_printf("\nn1:%s n2:%d n3:%% n4:%c 
-n5:%p n6:%u n7:%x n8:%X\n", 
-(char *)0, 20, 'R', ((void *)0) , 2147483647, 3500, 3500));
-	printf("%d\n", printf("\nn1:%s n2:%d n3:%% n4:%c n5:%p n6:%u n7:%x n8:%X\n", 
-(char *)0, 20, 'R', ((void *)0), 2147483647, 3500, 3500));
+	printf("\n%d\n", printf("%u", 21212121));
+	printf("\n%d\n", printf("%u", 21212121));
 	return (0);
 }
 */

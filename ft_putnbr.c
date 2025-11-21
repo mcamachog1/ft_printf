@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 void	ft_putnbr(int n, int *count)
 {

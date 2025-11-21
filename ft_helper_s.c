@@ -15,12 +15,10 @@
 
 void	ft_helper_s(char *s, int *count)
 {
-	char	*str_null;
-
 	if (s == 0)
 	{
-		str_null = "(null)";
-		s = str_null;
+		ft_putstr("(null)", count);
+		return ;
 	}
 	while (*s)
 	{
